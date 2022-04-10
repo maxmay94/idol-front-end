@@ -27,10 +27,10 @@ const LoginForm = props => {
   }
 
   return (
-    <form
+    <form 
       autoComplete="off"
       onSubmit={handleSubmit}
-      className={styles.container}
+      className='flex-auto align-middle text-center'
     >
       <div className={styles.inputContainer}>
         <label htmlFor="email" className={styles.label}>Email</label>
@@ -41,6 +41,7 @@ const LoginForm = props => {
           value={formData.email}
           name="email"
           onChange={handleChange}
+          className='bg-black rounded-sm border-yellow-600'
         />
       </div>
       <div className={styles.inputContainer}>
@@ -52,6 +53,7 @@ const LoginForm = props => {
           value={formData.pw}
           name="pw"
           onChange={handleChange}
+          className='bg-black border-yellow-600'
         />
       </div>
       <div>

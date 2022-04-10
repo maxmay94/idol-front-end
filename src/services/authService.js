@@ -70,4 +70,10 @@ async function changePassword(credentials) {
   }
 }
 
-export { signup, getUser, logout, login, changePassword }
+export { 
+  signup, 
+  getUser, 
+  logout, 
+  login, 
+  changePassword 
+}
