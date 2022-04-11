@@ -1,9 +1,9 @@
 import * as tokenService from './tokenService'
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/auth`
+const BASE_URL = `${process.env.REACT_APP_API_URL}/api/auth`
 
 async function signup(user) {
   try {
-    const res = await fetch(`${BASE_URL}/signup`, {
+    const res = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(user),
@@ -36,6 +36,7 @@ async function login(credentials) {
       body: JSON.stringify(credentials),
     })
     const json = await res.json()
+    console.log(json)
     if (json.token) {
       tokenService.setToken(json.token)
     }
@@ -47,33 +48,5 @@ async function login(credentials) {
   }
 }
 
-async function changePassword(credentials) {
-  try {
-    const res = await fetch(`${BASE_URL}/changePassword`, {
-      method: 'POST',
-      headers: new Headers({ 
-        'Content-Type': 'application/json', 
-        Authorization: `Bearer ${tokenService.getToken()}` 
-      }),
-      body: JSON.stringify(credentials),
-    })
-    const json = await res.json()
-    if (json.token) {
-      tokenService.removeToken()
-      tokenService.setToken(json.token)
-    }
-    if (json.err) {
-      throw new Error(json.err)
-    }
-  } catch(err) {
-    throw err
-  }
-}
 
-export { 
-  signup, 
-  getUser, 
-  logout, 
-  login, 
-  changePassword 
-}
+export { signup, getUser, logout, login }
